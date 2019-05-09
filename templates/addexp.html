@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+{% block body %}
+<h1>Add Todays Expance</h1>
+<form method="post">
+  {{ form.csrf_token }}
+  {{ form.until.label }}
+  {{ form.until }}
+  {{ form.taka.label }}
+  {{ form.taka }}
+  <input type="submit" value="Submit">
+</form>
+{% endblock %}

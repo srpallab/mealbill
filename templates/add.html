@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% block body %}
+<h1>Add Todays Meal</h1>
+<form method="post">
+  {{ form.csrf_token }}
+  {{ form.until.label }}
+  {{ form.until }}
+  <div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+	<th>Meal</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i, k in results %}
+      <tr>
+        <td>{{ i }}</td>
+        <td>{{ k }}</td>
+	<td><input id="{{ i }}" type="checkbox" name="{{ k }}" checked></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+  <input type="submit" value="Submit">
+</form>
+{% endblock %}

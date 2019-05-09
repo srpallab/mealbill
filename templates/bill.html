@@ -1,0 +1,63 @@
+{% extends 'layout.html' %}
+{% block body %}
+<h2 class="sub-header">Meal Days</h2>
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+	<th>ID</th>
+        <th>Name</th>
+	<th>Total Meal Day</th>
+	<th>Total Meal Bill</th>
+	<th>Meal Pay by Company</th>
+	<th>Meal Pay by You</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for id, name in results %}
+      <tr>
+	<td>{{ id }}</td>
+	<td>{{ name }}</td>
+	<td>{{ meal[loop.index-1][0] }}</td>
+	<td>{{ per_person_cost[loop.index-1] }}</td>
+	<td>{{ company_per_cost[loop.index-1] }}</td>
+	<td>{{ you_per_cost[loop.index-1] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot>
+      <td colspan="2">Total</td>
+      <td>{{ ex_meal_total }}</td>
+    </tfoot>
+  </table>
+</div>
+<h2 class="sub-header">Meal Expance</h2>
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+	<th>Date</th>
+        <th>Expance</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for expense in exp_bill %}
+      <tr>
+	<td>{{ expense[0] }}</td>
+	<td>{{ expense[1] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot>
+      <tr class="success">
+	<td>Total</td>
+	<td>{{ ex_bill_total[0] }}</td>
+      </tr>
+      <tr class="danger">
+	<td>Per Meal</td>
+	<td>{{ per_meal_cost }}</td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+{% endblock %}

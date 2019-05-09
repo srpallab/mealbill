@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div class="bootstrap-iso">
+  <form action="post">
+    {{ form.start_date.label }}
+    {{ form.start_date }}
+    {{ form.end_date.label }}
+    {{ form.end_date }}
+  </form>
+</div>
+<h2 class="sub-header">Pre Day Meal</h2>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+	{% for date in bill %}
+	<th>{{ date }}</th>
+	{% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for id, name in results %}
+      <tr>
+        <td>{{ id }}</td>
+        <td>{{ name }}</td>
+	{% set outer_loop = loop %}
+	{% for meal in bill.items() %}
+	<td>{{ meal[1][outer_loop.index-1] }}</td>
+	{% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+
+
+{% endblock %}
+
